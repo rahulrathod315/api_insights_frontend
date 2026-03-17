@@ -1,0 +1,8 @@
+.register-form__name-row {
+  display: flex;
+  gap: 10px;
+}
+
+.register-form__name-row .form-field {
+  flex: 1;
+}

@@ -1,0 +1,33 @@
+.social-auth {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.social-auth__btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 13px;
+  background: var(--color-bg-input);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.social-auth__btn:hover {
+  background: #1f2840;
+  border-color: var(--color-border-hover);
+}
+
+.social-auth__icon {
+  width: 17px;
+  height: 17px;
+  flex-shrink: 0;
+}

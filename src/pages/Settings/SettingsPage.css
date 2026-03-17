@@ -1,0 +1,11 @@
+.settings-page__title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 8px;
+}
+
+.settings-page__subtitle {
+  font-size: 14px;
+  color: var(--color-text-muted);
+}
