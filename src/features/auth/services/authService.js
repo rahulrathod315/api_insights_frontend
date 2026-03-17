@@ -10,7 +10,7 @@ function storeTokens(data) {
 export async function login({ email, password }) {
   const { data: res } = await apiClient.post('/v1/auth/login/', { email, password })
   if (!res.success) throw res.error
-  if (res.data.requires_2fa) {
+  if (res.data.two_factor_required) {
     return res.data
   }
   storeTokens(res.data)

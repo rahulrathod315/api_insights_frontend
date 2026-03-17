@@ -16,7 +16,7 @@
 .form-field__label {
   font-size: 13px;
   font-weight: 600;
-  color: var(--color-text-secondary);
+  color: var(--app-text-secondary);
 }
 
 .form-field__input-wrap {
@@ -28,7 +28,7 @@
 .form-field__icon {
   position: absolute;
   left: 13px;
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
   display: flex;
   align-items: center;
   pointer-events: none;
@@ -37,21 +37,21 @@
 .form-field__input {
   width: 100%;
   padding: 12px 13px 12px 40px;
-  background: var(--color-bg-input);
-  border: 1.5px solid var(--color-border);
+  background: var(--app-bg-input);
+  border: 1.5px solid var(--app-border);
   border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
+  color: var(--app-text-primary);
   font-size: 14px;
   outline: none;
   transition: border-color var(--transition-fast);
 }
 
 .form-field__input::placeholder {
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
 }
 
 .form-field__input:focus {
-  border-color: var(--color-accent);
+  border-color: var(--app-accent);
 }
 
 .form-field--error .form-field__input {

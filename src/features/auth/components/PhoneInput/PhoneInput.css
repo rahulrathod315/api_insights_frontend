@@ -13,10 +13,10 @@
   align-items: center;
   gap: 6px;
   padding: 12px 10px 12px 13px;
-  background: var(--color-bg-input);
-  border: 1.5px solid var(--color-border);
+  background: var(--app-bg-input);
+  border: 1.5px solid var(--app-border);
   border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
+  color: var(--app-text-primary);
   font-size: 14px;
   font-weight: 500;
   white-space: nowrap;
@@ -27,7 +27,7 @@
 
 .phone-input__trigger:hover,
 .phone-input__trigger--open {
-  border-color: var(--color-accent);
+  border-color: var(--app-accent);
 }
 
 .phone-input__flag {
@@ -36,12 +36,12 @@
 }
 
 .phone-input__dial {
-  color: var(--color-text-secondary);
+  color: var(--app-text-secondary);
 }
 
 .phone-input__chevron {
   margin-left: auto;
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
   font-size: 10px;
   transition: transform var(--transition-fast);
 }
@@ -74,7 +74,7 @@
 }
 
 .phone-input__dropdown::-webkit-scrollbar-thumb {
-  background: var(--color-border-hover);
+  background: var(--app-border-hover);
   border-radius: 4px;
 }
 
@@ -85,14 +85,14 @@
   border: none;
   border-bottom: 1px solid #2e3a52;
   border-radius: 0;
-  color: var(--color-text-primary);
+  color: var(--app-text-primary);
   font-family: inherit;
   font-size: 13px;
   outline: none;
 }
 
 .phone-input__search::placeholder {
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
 }
 
 .phone-input__option {
@@ -103,7 +103,7 @@
   cursor: pointer;
   transition: background 0.14s;
   font-size: 13.5px;
-  color: var(--color-text-secondary);
+  color: var(--app-text-secondary);
 }
 
 .phone-input__option:hover {
@@ -122,7 +122,7 @@
 
 .phone-input__option-dial {
   font-weight: 600;
-  color: var(--color-text-primary);
+  color: var(--app-text-primary);
   font-size: 13px;
 }
 
@@ -139,7 +139,7 @@
 .phone-input__icon {
   position: absolute;
   left: 13px;
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
   display: flex;
   align-items: center;
   pointer-events: none;
@@ -148,10 +148,10 @@
 .phone-input__input {
   width: 100%;
   padding: 12px 13px 12px 40px;
-  background: var(--color-bg-input);
-  border: 1.5px solid var(--color-border);
+  background: var(--app-bg-input);
+  border: 1.5px solid var(--app-border);
   border-radius: var(--radius-sm);
-  color: var(--color-text-primary);
+  color: var(--app-text-primary);
   font-family: inherit;
   font-size: 14px;
   outline: none;
@@ -159,11 +159,11 @@
 }
 
 .phone-input__input::placeholder {
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
 }
 
 .phone-input__input:focus {
-  border-color: var(--color-accent);
+  border-color: var(--app-accent);
 }
 
 .phone-input--error .phone-input__input {

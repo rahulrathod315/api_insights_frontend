@@ -1,5 +1,7 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom'
 import { AuthProvider } from '../features/auth/context/AuthContext'
+import ErrorBoundary from '../shared/components/ErrorBoundary/ErrorBoundary'
+import { Toaster } from '../components/ui/sonner'
 import routes from './routes'
 
 function AppRoutes() {
@@ -8,10 +10,13 @@ function AppRoutes() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <AppRoutes />
-      </AuthProvider>
-    </BrowserRouter>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <AuthProvider>
+          <AppRoutes />
+          <Toaster position="top-right" richColors closeButton />
+        </AuthProvider>
+      </BrowserRouter>
+    </ErrorBoundary>
   )
 }

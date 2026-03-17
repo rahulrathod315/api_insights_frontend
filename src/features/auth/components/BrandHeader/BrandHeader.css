@@ -27,6 +27,6 @@
 
 .brand-header__tagline {
   font-size: 13px;
-  color: var(--color-text-muted);
+  color: var(--app-text-muted);
   margin-top: 6px;
 }

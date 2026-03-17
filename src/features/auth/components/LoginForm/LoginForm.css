@@ -1,5 +1,5 @@
 .auth-card {
-  background: var(--color-bg-card);
+  background: var(--app-bg-card);
   border-radius: var(--radius-lg);
   padding: 38px 40px 34px;
   width: 100%;
@@ -21,12 +21,12 @@
 .auth-card__forgot-link {
   font-size: 12.5px;
   font-weight: 500;
-  color: var(--color-accent);
+  color: var(--app-accent);
   transition: color var(--transition-fast);
 }
 
 .auth-card__forgot-link:hover {
-  color: var(--color-accent-hover);
+  color: var(--app-accent-hover);
 }
 
 @keyframes fluidGrad {
@@ -72,16 +72,16 @@
   text-align: center;
   margin-top: 20px;
   font-size: 13.5px;
-  color: var(--color-text-subtle);
+  color: var(--app-text-subtle);
 }
 
 .auth-card__switch-link {
-  color: var(--color-accent);
+  color: var(--app-accent);
   font-weight: 600;
   margin-left: 3px;
   transition: color var(--transition-fast);
 }
 
 .auth-card__switch-link:hover {
-  color: var(--color-accent-hover);
+  color: var(--app-accent-hover);
 }

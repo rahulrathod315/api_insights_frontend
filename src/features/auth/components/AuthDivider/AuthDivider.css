@@ -10,11 +10,11 @@
   content: '';
   flex: 1;
   height: 1px;
-  background: var(--color-divider);
+  background: var(--app-divider);
 }
 
 .auth-divider__text {
   font-size: 12px;
-  color: var(--color-text-dim);
+  color: var(--app-text-dim);
   white-space: nowrap;
 }

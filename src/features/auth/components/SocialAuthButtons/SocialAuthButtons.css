@@ -11,10 +11,10 @@
   justify-content: center;
   gap: 8px;
   padding: 12px 13px;
-  background: var(--color-bg-input);
-  border: 1.5px solid var(--color-border);
+  background: var(--app-bg-input);
+  border: 1.5px solid var(--app-border);
   border-radius: var(--radius-sm);
-  color: var(--color-text-secondary);
+  color: var(--app-text-secondary);
   font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
@@ -23,7 +23,7 @@
 
 .social-auth__btn:hover {
   background: #1f2840;
-  border-color: var(--color-border-hover);
+  border-color: var(--app-border-hover);
 }
 
 .social-auth__icon {
