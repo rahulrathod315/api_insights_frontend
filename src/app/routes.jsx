@@ -8,6 +8,7 @@ import ForgotPasswordPage from '../pages/ForgotPassword/ForgotPasswordPage'
 import ResetPasswordPage from '../pages/ResetPassword/ResetPasswordPage'
 import DashboardPage from '../pages/Dashboard/DashboardPage'
 import SettingsPage from '../pages/Settings/SettingsPage'
+import ProjectsPage from '../pages/Projects/ProjectsPage'
 
 const routes = [
   {
@@ -31,6 +32,7 @@ const routes = [
     element: <ProtectedRoute><DashboardLayout /></ProtectedRoute>,
     children: [
       { index: true, element: <DashboardPage /> },
+      { path: 'projects', element: <ProjectsPage /> },
       { path: 'settings', element: <SettingsPage /> },
     ],
   },

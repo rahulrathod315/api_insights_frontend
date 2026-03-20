@@ -211,6 +211,12 @@
   color: var(--app-danger);
 }
 
+.sidebar__account-divider {
+  height: 1px;
+  background: var(--app-border);
+  margin: 2px 0;
+}
+
 .sidebar__toggle {
   display: flex;
   align-items: center;

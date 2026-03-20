@@ -1,0 +1,378 @@
+.projects-page {
+  max-width: 1000px;
+}
+
+.projects-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+.projects-page__title {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+  margin-bottom: 4px;
+}
+
+.projects-page__subtitle {
+  font-size: 14px;
+  color: var(--app-text-muted);
+}
+
+.projects-page__create-btn {
+  padding: 8px 18px;
+  background: var(--app-accent);
+  color: var(--app-bg-primary);
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: opacity var(--transition-fast);
+  white-space: nowrap;
+}
+
+.projects-page__create-btn:hover {
+  opacity: 0.85;
+}
+
+.projects-page__loading {
+  color: var(--app-text-muted);
+  font-size: 14px;
+  padding: 40px 0;
+}
+
+/* ── Grid ── */
+.projects-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
+  gap: 16px;
+}
+
+/* ── Create card ── */
+.projects-page__create-card {
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+.projects-page__create-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+  margin-bottom: 16px;
+}
+
+.projects-page__create-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.projects-page__create-input {
+  width: 100%;
+  padding: 9px 12px;
+  background: var(--app-bg-input);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-sm);
+  color: var(--app-text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.projects-page__create-input:focus {
+  border-color: var(--app-border-hover);
+  box-shadow: var(--app-focus-ring);
+}
+
+.projects-page__create-textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+
+.projects-page__create-error {
+  font-size: 12px;
+  color: var(--app-error);
+  margin-bottom: 8px;
+}
+
+.projects-page__create-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+/* ── Empty state ── */
+.projects-page__empty {
+  padding: 48px 24px;
+  text-align: center;
+}
+
+.projects-page__empty-text {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+  margin-bottom: 6px;
+}
+
+.projects-page__empty-sub {
+  font-size: 14px;
+  color: var(--app-text-muted);
+  margin-bottom: 20px;
+}
+
+/* ── Project card ── */
+.project-card {
+  padding: 22px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-card__header {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-card__title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.project-card__name {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+}
+
+.project-card__status {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  letter-spacing: 0.02em;
+}
+
+.project-card__status--active {
+  background: var(--app-success-bg);
+  color: var(--app-success);
+}
+
+.project-card__status--inactive {
+  background: var(--app-error-bg);
+  color: var(--app-error);
+}
+
+.project-card__description {
+  font-size: 13px;
+  color: var(--app-text-muted);
+  line-height: 1.5;
+}
+
+/* ── Stats ── */
+.project-card__stats {
+  display: flex;
+  gap: 24px;
+}
+
+.project-card__stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-card__stat-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--app-text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.project-card__stat-label {
+  font-size: 11px;
+  color: var(--app-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── API Key ── */
+.project-card__api-key {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.project-card__api-key-label {
+  font-size: 11px;
+  color: var(--app-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.project-card__api-key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-card__api-key-value {
+  font-size: 12px;
+  color: var(--app-text-secondary);
+  background: var(--app-bg-input);
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--app-border);
+  font-family: 'DM Sans', monospace;
+}
+
+.project-card__icon-btn {
+  background: none;
+  border: none;
+  color: var(--app-text-dim);
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.project-card__icon-btn:hover {
+  color: var(--app-text-primary);
+}
+
+.project-card__copied {
+  font-size: 11px;
+  color: var(--app-success);
+  font-weight: 500;
+}
+
+/* ── Meta ── */
+.project-card__meta {
+  display: flex;
+  align-items: center;
+}
+
+.project-card__date {
+  font-size: 12px;
+  color: var(--app-text-dim);
+}
+
+/* ── Actions ── */
+.project-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 4px;
+  border-top: 1px solid var(--app-border);
+}
+
+.project-card__delete-confirm {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.project-card__delete-text {
+  font-size: 12px;
+  color: var(--app-text-muted);
+}
+
+/* ── Buttons ── */
+.project-card__btn {
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+}
+
+.project-card__btn--primary {
+  background: var(--app-accent);
+  color: var(--app-bg-primary);
+  border: none;
+  font-weight: 600;
+}
+
+.project-card__btn--primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.project-card__btn--primary:not(:disabled):hover {
+  opacity: 0.85;
+}
+
+.project-card__btn--secondary {
+  background: none;
+  border: 1px solid var(--app-border);
+  color: var(--app-text-secondary);
+}
+
+.project-card__btn--secondary:hover {
+  background: var(--app-hover-overlay);
+  color: var(--app-text-primary);
+}
+
+.project-card__btn--danger {
+  background: none;
+  border: 1px solid var(--app-border);
+  color: var(--app-danger);
+}
+
+.project-card__btn--danger:hover {
+  background: var(--app-error-bg);
+}
+
+/* ── Edit form ── */
+.project-card__edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.project-card__edit-input,
+.project-card__edit-textarea {
+  width: 100%;
+  padding: 9px 12px;
+  background: var(--app-bg-input);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-sm);
+  color: var(--app-text-primary);
+  font-size: 13px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.project-card__edit-input:focus,
+.project-card__edit-textarea:focus {
+  border-color: var(--app-border-hover);
+  box-shadow: var(--app-focus-ring);
+}
+
+.project-card__edit-textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+
+.project-card__edit-error {
+  font-size: 12px;
+  color: var(--app-error);
+}
+
+.project-card__edit-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}

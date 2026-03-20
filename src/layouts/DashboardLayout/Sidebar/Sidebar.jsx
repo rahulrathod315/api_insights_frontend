@@ -115,10 +115,17 @@ export default function Sidebar({ collapsed, onToggle }) {
             <div className="sidebar__account-menu">
               <button
                 className="sidebar__account-item"
+                onClick={() => { setMenuOpen(false); navigate('/projects') }}
+              >
+                Projects
+              </button>
+              <button
+                className="sidebar__account-item"
                 onClick={() => { setMenuOpen(false); navigate('/settings') }}
               >
                 Settings
               </button>
+              <div className="sidebar__account-divider" />
               <button
                 className="sidebar__account-item sidebar__account-item--danger"
                 onClick={handleLogout}
