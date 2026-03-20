@@ -44,7 +44,7 @@ export default function LoginForm({ onSubmit, onGoogleAuth, onAppleAuth, error, 
 
   return (
     <div className="auth-card">
-      <BrandHeader tagline="Sign in to your APIVUE dashboard" />
+      <BrandHeader tagline="Sign in to your API Insights dashboard" />
 
       <SocialAuthButtons onGoogleClick={onGoogleAuth} onAppleClick={onAppleAuth} />
       <AuthDivider />
