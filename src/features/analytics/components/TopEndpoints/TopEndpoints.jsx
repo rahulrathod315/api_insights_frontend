@@ -67,19 +67,20 @@ export default function TopEndpoints({ projectId, granularity }) {
 
   const endpoints = data?.endpoints || []
 
-  if (error || !endpoints.length) {
+  if (error) {
     return (
       <div className="top-endpoints card-surface">
         <div className="top-endpoints__header">
           <h3 className="top-endpoints__title">Top Endpoints</h3>
         </div>
         <div className="top-endpoints__empty">
-          {error ? 'Unable to load data' : 'No endpoints yet'}
+          Unable to load data
         </div>
       </div>
     )
   }
 
+  const hasData = endpoints.length > 0
   const maxRequests = endpoints[0]?.total_requests || 1
   const top = endpoints.slice(0, 7)
 
@@ -89,7 +90,10 @@ export default function TopEndpoints({ projectId, granularity }) {
         <h3 className="top-endpoints__title">Top Endpoints</h3>
         <InfoButton text="Endpoints ranked by total request count in the selected time period. The bar shows relative traffic volume. Avg response time and success rate are shown for each endpoint." />
       </div>
-      <div className="top-endpoints__list">
+      <div className="top-endpoints__list" style={{ position: 'relative' }}>
+        {!hasData && (
+          <div className="top-endpoints__no-data-overlay">No endpoints yet</div>
+        )}
         {top.map((ep, i) => {
           const barPct = (ep.total_requests / maxRequests) * 100
           const barColor = BAR_COLORS[ep.method] || '#6a6a7a'

@@ -56,27 +56,35 @@ export default function UserAgentChart({ projectId, granularity }) {
 
   if (loading) return <LoadingSkeleton />
 
-  if (error || !pieData.length) {
+  if (error) {
     return (
       <div className="user-agent-chart card-surface">
         <div className="user-agent-chart__header">
           <h3 className="user-agent-chart__title">User Agents</h3>
         </div>
         <div className="user-agent-chart__empty">
-          {error ? 'Unable to load data' : 'No data available'}
+          Unable to load data
         </div>
       </div>
     )
   }
+
+  const hasData = pieData.length > 0
+  const displayPieData = hasData
+    ? pieData
+    : [{ id: 'empty', label: 'No data', value: 1, color: isDark ? '#2a2a35' : '#e5e5e8' }]
 
   return (
     <div className="user-agent-chart card-surface user-agent-chart--loaded">
       <div className="user-agent-chart__header">
         <h3 className="user-agent-chart__title">User Agents</h3>
       </div>
-      <div className="user-agent-chart__pie-area">
+      <div className="user-agent-chart__pie-area" style={{ position: 'relative' }}>
+        {!hasData && (
+          <div className="user-agent-chart__no-data-overlay">No data available</div>
+        )}
         <ResponsivePie
-          data={pieData}
+          data={displayPieData}
           colors={d => d.data.color}
           margin={{ top: 24, right: 24, bottom: 24, left: 24 }}
           innerRadius={0.58}
@@ -86,7 +94,9 @@ export default function UserAgentChart({ projectId, granularity }) {
           borderWidth={0}
           enableArcLabels={false}
           enableArcLinkLabels={false}
+          isInteractive={hasData}
           tooltip={({ datum }) => {
+            if (!hasData) return null
             const pct = totalRequests ? ((datum.value / totalRequests) * 100).toFixed(1) : 0
             return (
               <div className="user-agent-chart__tooltip">
@@ -116,14 +126,16 @@ export default function UserAgentChart({ projectId, granularity }) {
             },
           }}
         />
-        <div className="user-agent-chart__center-label">
-          <span className="user-agent-chart__center-value">
-            {totalRequests >= 1000
-              ? `${(totalRequests / 1000).toFixed(1).replace(/\.0$/, '')}k`
-              : totalRequests}
-          </span>
-          <span className="user-agent-chart__center-text">requests</span>
-        </div>
+        {hasData && (
+          <div className="user-agent-chart__center-label">
+            <span className="user-agent-chart__center-value">
+              {totalRequests >= 1000
+                ? `${(totalRequests / 1000).toFixed(1).replace(/\.0$/, '')}k`
+                : totalRequests}
+            </span>
+            <span className="user-agent-chart__center-text">requests</span>
+          </div>
+        )}
       </div>
     </div>
   )

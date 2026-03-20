@@ -179,18 +179,23 @@ export default function RequestsAreaChart({ projectId, granularity }) {
 
   if (loading) return <LoadingSkeleton />
 
-  if (error || !chartData.length) {
+  if (error) {
     return (
       <div className="requests-area-chart card-surface">
         <div className="requests-area-chart__header">
           <h3 className="requests-area-chart__title">Requests Over Time</h3>
         </div>
         <div className="requests-area-chart__empty">
-          {error ? 'Unable to load chart data' : 'No data available for this period'}
+          Unable to load chart data
         </div>
       </div>
     )
   }
+
+  const hasData = chartData.length > 0
+  const displayData = hasData
+    ? chartData
+    : Array.from({ length: 7 }, () => ({ status_2xx: 0, status_4xx: 0, status_5xx: 0 }))
 
   const textColor = isDark ? '#555566' : '#999'
   const gridColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)'
@@ -217,9 +222,12 @@ export default function RequestsAreaChart({ projectId, granularity }) {
           ))}
         </div>
       </div>
-      <div className="requests-area-chart__body">
+      <div className="requests-area-chart__body" style={{ position: 'relative' }}>
+        {!hasData && (
+          <div className="requests-area-chart__no-data-overlay">No data available for this period</div>
+        )}
         <ResponsiveStream
-          data={chartData}
+          data={displayData}
           keys={SERIES_KEYS}
           offsetType="none"
           curve="monotoneX"

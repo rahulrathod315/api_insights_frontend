@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProjects } from '../../../features/projects'
+import { getProjects, createProject } from '../../../features/projects'
 import './ProjectSwitcher.css'
 
 function ChevronIcon() {
@@ -20,6 +20,15 @@ function SearchIcon() {
   )
 }
 
+function PlusIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 5v14" />
+      <path d="M5 12h14" />
+    </svg>
+  )
+}
+
 function FolderIcon() {
   return (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -33,8 +42,13 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
   const [projects, setProjects] = useState([])
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
+  const [showAddForm, setShowAddForm] = useState(false)
+  const [newName, setNewName] = useState('')
+  const [creating, setCreating] = useState(false)
+  const [createError, setCreateError] = useState('')
   const ref = useRef(null)
   const searchRef = useRef(null)
+  const addInputRef = useRef(null)
   const navigate = useNavigate()
 
   const selected = selectedProject
@@ -65,14 +79,19 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
       if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false)
         setSearch('')
+        resetAddForm()
       }
     }
     if (open) {
       document.addEventListener('mousedown', handleClickOutside)
-      searchRef.current?.focus()
+      if (!showAddForm) searchRef.current?.focus()
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [open])
+  }, [open, showAddForm])
+
+  useEffect(() => {
+    if (showAddForm) addInputRef.current?.focus()
+  }, [showAddForm])
 
   const filtered = useMemo(() => {
     if (!search) return projects
@@ -80,11 +99,39 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
     return projects.filter(p => p.name.toLowerCase().includes(q))
   }, [search, projects])
 
+  function resetAddForm() {
+    setShowAddForm(false)
+    setNewName('')
+    setCreateError('')
+  }
+
   function handleSelect(project) {
     setSelected(project)
     setOpen(false)
     setSearch('')
+    resetAddForm()
     navigate(`/projects/${project.id}`)
+  }
+
+  async function handleCreate(e) {
+    e.preventDefault()
+    const trimmed = newName.trim()
+    if (!trimmed) return
+    setCreating(true)
+    setCreateError('')
+    try {
+      const created = await createProject({ name: trimmed })
+      setProjects(prev => [...prev, created])
+      resetAddForm()
+      handleSelect(created)
+    } catch (err) {
+      const msg = err?.response?.data?.errors?.name?.[0]
+        || err?.response?.data?.message
+        || 'Failed to create project'
+      setCreateError(msg)
+    } finally {
+      setCreating(false)
+    }
   }
 
   if (loading) {
@@ -98,17 +145,6 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
     )
   }
 
-  if (projects.length === 0) {
-    return (
-      <div className="project-switcher">
-        <button className="project-switcher__trigger" disabled>
-          <FolderIcon />
-          <span className="project-switcher__name">No projects</span>
-        </button>
-      </div>
-    )
-  }
-
   return (
     <div className="project-switcher" ref={ref}>
       <button
@@ -116,7 +152,7 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
         onClick={() => setOpen(!open)}
       >
         <FolderIcon />
-        <span className="project-switcher__name">{selected?.name}</span>
+        <span className="project-switcher__name">{selected?.name || 'No projects'}</span>
         <span className="project-switcher__chevron">
           <ChevronIcon />
         </span>
@@ -136,7 +172,7 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
             />
           </div>
           <div className="project-switcher__list">
-            {filtered.length === 0 && (
+            {filtered.length === 0 && !showAddForm && (
               <div className="project-switcher__empty">No projects found</div>
             )}
             {filtered.map(p => (
@@ -149,6 +185,47 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
                 <span>{p.name}</span>
               </button>
             ))}
+          </div>
+          <div className="project-switcher__footer">
+            {showAddForm ? (
+              <form className="project-switcher__add-form" onSubmit={handleCreate}>
+                <input
+                  ref={addInputRef}
+                  className="project-switcher__add-input"
+                  type="text"
+                  placeholder="Project name"
+                  value={newName}
+                  onChange={e => { setNewName(e.target.value); setCreateError('') }}
+                  disabled={creating}
+                />
+                {createError && <p className="project-switcher__add-error">{createError}</p>}
+                <div className="project-switcher__add-actions">
+                  <button
+                    type="button"
+                    className="project-switcher__add-cancel"
+                    onClick={resetAddForm}
+                    disabled={creating}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="project-switcher__add-submit"
+                    disabled={creating || !newName.trim()}
+                  >
+                    {creating ? 'Creating...' : 'Create'}
+                  </button>
+                </div>
+              </form>
+            ) : (
+              <button
+                className="project-switcher__add-btn"
+                onClick={() => setShowAddForm(true)}
+              >
+                <PlusIcon />
+                <span>Add Project</span>
+              </button>
+            )}
           </div>
         </div>
       )}

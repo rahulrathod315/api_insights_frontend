@@ -66,6 +66,18 @@
   color: var(--app-text-muted);
 }
 
+.user-agent-chart__no-data-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--app-text-muted);
+  z-index: 10;
+  pointer-events: none;
+}
+
 /* ── Tooltip ── */
 .user-agent-chart__tooltip {
   background: var(--app-bg-card);

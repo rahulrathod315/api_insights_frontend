@@ -134,7 +134,7 @@ export default function ResponseTimeChart({ projectId, granularity }) {
 
   if (loading) return <LoadingSkeleton />
 
-  if (error || !chartData.length) {
+  if (error) {
     return (
       <div className="response-time-chart card-surface">
         <div className="response-time-chart__header">
@@ -143,11 +143,16 @@ export default function ResponseTimeChart({ projectId, granularity }) {
           </div>
         </div>
         <div className="response-time-chart__empty">
-          {error ? 'Unable to load chart data' : 'No data available for this period'}
+          Unable to load chart data
         </div>
       </div>
     )
   }
+
+  const hasData = chartData.length > 0
+  const displayData = hasData
+    ? chartData
+    : Array.from({ length: 7 }, () => ({ avg_response_time: 0, p50_response_time: 0, p95_response_time: 0, p99_response_time: 0 }))
 
   const textColor = isDark ? '#555566' : '#999'
   const gridColor = isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.05)'
@@ -174,9 +179,12 @@ export default function ResponseTimeChart({ projectId, granularity }) {
           ))}
         </div>
       </div>
-      <div className="response-time-chart__body">
+      <div className="response-time-chart__body" style={{ position: 'relative' }}>
+        {!hasData && (
+          <div className="response-time-chart__no-data-overlay">No data available for this period</div>
+        )}
         <ResponsiveStream
-          data={chartData}
+          data={displayData}
           keys={SERIES_KEYS}
           offsetType="none"
           curve="monotoneX"

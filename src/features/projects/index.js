@@ -1,1 +1,1 @@
-export { getProjects } from './services/projectService'
+export { getProjects, createProject } from './services/projectService'

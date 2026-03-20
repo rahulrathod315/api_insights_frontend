@@ -6,3 +6,8 @@ export async function getProjects(page = 1, pageSize = 100) {
   })
   return res.data.data
 }
+
+export async function createProject({ name, description }) {
+  const res = await apiClient.post('/v1/projects/', { name, description })
+  return res.data.data
+}

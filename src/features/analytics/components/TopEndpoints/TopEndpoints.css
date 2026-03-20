@@ -139,6 +139,15 @@
   color: var(--app-text-muted);
 }
 
+.top-endpoints__no-data-overlay {
+  height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  color: var(--app-text-muted);
+}
+
 /* ── Info button (shared) ── */
 .chart-info {
   position: relative;
