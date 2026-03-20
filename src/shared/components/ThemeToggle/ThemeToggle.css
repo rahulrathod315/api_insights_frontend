@@ -1,0 +1,32 @@
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: none;
+  color: var(--app-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.theme-toggle:hover {
+  color: var(--app-text-primary);
+}
+
+.theme-toggle__icon--dark {
+  display: none;
+}
+
+:root.dark .theme-toggle__icon--light {
+  display: none;
+}
+
+:root.dark .theme-toggle__icon--dark {
+  display: block;
+}
+
+:root:not(.dark) .theme-toggle__icon--light {
+  display: block;
+}

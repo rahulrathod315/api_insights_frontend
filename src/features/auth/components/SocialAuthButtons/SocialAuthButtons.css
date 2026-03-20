@@ -10,10 +10,10 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 12px 13px;
+  padding: 9px 13px;
   background: var(--app-bg-input);
-  border: 1.5px solid var(--app-border);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
   color: var(--app-text-secondary);
   font-size: 14px;
   font-weight: 600;
@@ -22,7 +22,7 @@
 }
 
 .social-auth__btn:hover {
-  background: #1f2840;
+  background: var(--app-hover-overlay);
   border-color: var(--app-border-hover);
 }
 

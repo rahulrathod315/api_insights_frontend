@@ -12,6 +12,6 @@
 
 .dashboard-layout__content {
   flex: 1;
-  padding: 24px;
+  padding: 28px;
   overflow-y: auto;
 }

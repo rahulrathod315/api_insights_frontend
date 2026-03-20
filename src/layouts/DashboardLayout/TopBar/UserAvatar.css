@@ -15,7 +15,7 @@
   height: 36px;
   border-radius: 50%;
   background: var(--app-accent);
-  color: #fff;
+  color: var(--app-bg-primary);
   font-size: 13px;
   font-weight: 700;
   display: flex;
@@ -35,8 +35,8 @@
   width: 220px;
   background: var(--app-bg-card);
   border: 1px solid var(--app-border);
-  border-radius: var(--radius-sm);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  border-radius: var(--radius-md);
+  box-shadow: var(--app-shadow-md);
   z-index: 100;
   overflow: hidden;
 }
@@ -80,10 +80,10 @@
 }
 
 .user-avatar__item:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--app-hover-overlay);
   color: var(--app-text-primary);
 }
 
 .user-avatar__item--danger:hover {
-  color: #ef4444;
+  color: var(--app-danger);
 }

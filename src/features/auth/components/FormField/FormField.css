@@ -36,14 +36,14 @@
 
 .form-field__input {
   width: 100%;
-  padding: 12px 13px 12px 40px;
+  padding: 10px 12px 10px 38px;
   background: var(--app-bg-input);
-  border: 1.5px solid var(--app-border);
-  border-radius: var(--radius-sm);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
   color: var(--app-text-primary);
-  font-size: 14px;
+  font-size: 13.5px;
   outline: none;
-  transition: border-color var(--transition-fast);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .form-field__input::placeholder {
@@ -52,14 +52,15 @@
 
 .form-field__input:focus {
   border-color: var(--app-accent);
+  box-shadow: 0 0 0 3px var(--app-focus-ring);
 }
 
 .form-field--error .form-field__input {
-  border-color: #ff5c5c;
+  border-color: var(--app-error);
 }
 
 .form-field__error {
   font-size: 12px;
-  color: #ff5c5c;
+  color: var(--app-error);
   margin: 5px 0 0;
 }

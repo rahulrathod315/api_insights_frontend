@@ -1,0 +1,9 @@
+.subbar {
+  display: flex;
+  align-items: center;
+  padding: 12px 28px;
+}
+
+.subbar__spacer {
+  flex: 1;
+}

@@ -1,0 +1,117 @@
+.project-switcher {
+  position: relative;
+}
+
+.project-switcher__trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px 7px 12px;
+  background: var(--app-bg-input);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
+  color: var(--app-text-primary);
+  font-size: 13.5px;
+  font-weight: 500;
+  font-family: inherit;
+  white-space: nowrap;
+  max-width: 220px;
+  transition: border-color var(--transition-fast);
+}
+
+.project-switcher__trigger:hover {
+  border-color: var(--app-border-hover);
+}
+
+.project-switcher__name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-switcher__chevron {
+  display: flex;
+  align-items: center;
+  color: var(--app-text-dim);
+  margin-left: auto;
+}
+
+.project-switcher__dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  width: 260px;
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--app-shadow-lg);
+  z-index: 100;
+  overflow: hidden;
+}
+
+.project-switcher__search-wrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--app-border);
+}
+
+.project-switcher__search-icon {
+  display: flex;
+  align-items: center;
+  color: var(--app-text-dim);
+  flex-shrink: 0;
+}
+
+.project-switcher__search {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--app-text-primary);
+  font-size: 13px;
+  font-family: inherit;
+}
+
+.project-switcher__search::placeholder {
+  color: var(--app-text-dim);
+}
+
+.project-switcher__list {
+  max-height: 240px;
+  overflow-y: auto;
+  padding: 4px 0;
+}
+
+.project-switcher__item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 8px 14px;
+  border: none;
+  background: none;
+  color: var(--app-text-secondary);
+  font-size: 13.5px;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.project-switcher__item:hover {
+  background: var(--app-hover-overlay);
+  color: var(--app-text-primary);
+}
+
+.project-switcher__item--active {
+  color: var(--app-text-primary);
+  background: var(--app-active-overlay);
+}
+
+.project-switcher__empty {
+  padding: 16px 14px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--app-text-muted);
+}

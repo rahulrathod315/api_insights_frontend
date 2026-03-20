@@ -38,7 +38,7 @@
 
 .auth-layout__footer-link {
   font-size: 12px;
-  color: #3a4560;
+  color: var(--app-text-dim);
   transition: color var(--transition-fast);
 }
 

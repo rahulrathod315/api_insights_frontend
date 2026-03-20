@@ -36,7 +36,7 @@ function makeSquare(cx, cy) {
     lineW: size < 10 ? rnd(0.8, 1.4) : size < 22 ? rnd(1.1, 1.9) : rnd(1.5, 2.6),
     life: Math.random(),
     lifeSpeed: size < 12 ? rnd(0.00018, 0.00038) : size < 25 ? rnd(0.00010, 0.00022) : rnd(0.00006, 0.00013),
-    peakAlpha: rnd(0.38, 0.78),
+    peakAlpha: rnd(0.15, 0.35),
     phaseIn: rnd(0.10, 0.20),
     phaseOut: rnd(0.72, 0.86),
   }
