@@ -15,7 +15,7 @@
   font-weight: 500;
   font-family: inherit;
   white-space: nowrap;
-  max-width: 220px;
+  width: 260px;
   transition: border-color var(--transition-fast);
 }
 
@@ -142,79 +142,3 @@
   color: var(--app-text-primary);
 }
 
-.project-switcher__add-form {
-  padding: 10px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.project-switcher__add-input {
-  width: 100%;
-  padding: 7px 10px;
-  background: var(--app-bg-input);
-  border: 1px solid var(--app-border);
-  border-radius: var(--radius-sm);
-  color: var(--app-text-primary);
-  font-size: 13px;
-  font-family: inherit;
-  outline: none;
-  transition: border-color var(--transition-fast);
-}
-
-.project-switcher__add-input:focus {
-  border-color: var(--app-border-hover);
-  box-shadow: var(--app-focus-ring);
-}
-
-.project-switcher__add-input::placeholder {
-  color: var(--app-text-dim);
-}
-
-.project-switcher__add-error {
-  font-size: 12px;
-  color: var(--app-error);
-}
-
-.project-switcher__add-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 6px;
-}
-
-.project-switcher__add-cancel,
-.project-switcher__add-submit {
-  padding: 5px 12px;
-  border-radius: var(--radius-sm);
-  font-size: 12px;
-  font-weight: 500;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background var(--transition-fast), opacity var(--transition-fast);
-}
-
-.project-switcher__add-cancel {
-  background: none;
-  border: 1px solid var(--app-border);
-  color: var(--app-text-secondary);
-}
-
-.project-switcher__add-cancel:hover {
-  background: var(--app-hover-overlay);
-}
-
-.project-switcher__add-submit {
-  background: var(--app-accent);
-  border: none;
-  color: var(--app-bg-primary);
-  font-weight: 600;
-}
-
-.project-switcher__add-submit:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.project-switcher__add-submit:not(:disabled):hover {
-  opacity: 0.85;
-}

@@ -19,3 +19,22 @@ export async function changePassword({ current_password, new_password, new_passw
   })
   return res.data
 }
+
+export async function resendVerificationEmail() {
+  const res = await apiClient.post('/v1/auth/verify-email/resend/')
+  return res.data
+}
+
+export async function uploadAvatar(file) {
+  const formData = new FormData()
+  formData.append('avatar', file)
+  const res = await apiClient.post('/v1/auth/profile/avatar/', formData, {
+    headers: { 'Content-Type': 'multipart/form-data' },
+  })
+  return res.data
+}
+
+export async function deleteAvatar() {
+  const res = await apiClient.delete('/v1/auth/profile/avatar/')
+  return res.data
+}

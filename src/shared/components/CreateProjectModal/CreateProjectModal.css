@@ -1,0 +1,148 @@
+.create-project-modal__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+.create-project-modal {
+  background: var(--app-bg-card);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--app-shadow-xl);
+  padding: 24px;
+  width: 440px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.create-project-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.create-project-modal__title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+}
+
+.create-project-modal__close {
+  background: none;
+  border: none;
+  color: var(--app-text-dim);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast), background var(--transition-fast);
+}
+
+.create-project-modal__close:hover {
+  color: var(--app-text-primary);
+  background: var(--app-hover-overlay);
+}
+
+.create-project-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.create-project-modal__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.create-project-modal__label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--app-text-primary);
+}
+
+.create-project-modal__input,
+.create-project-modal__textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--app-bg-input);
+  border: 1px solid var(--app-border);
+  border-radius: var(--radius-md);
+  color: var(--app-text-primary);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color var(--transition-fast);
+  box-sizing: border-box;
+}
+
+.create-project-modal__input:focus,
+.create-project-modal__textarea:focus {
+  border-color: var(--app-border-hover);
+  box-shadow: var(--app-focus-ring);
+}
+
+.create-project-modal__input::placeholder,
+.create-project-modal__textarea::placeholder {
+  color: var(--app-text-dim);
+}
+
+.create-project-modal__textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+
+.create-project-modal__error {
+  font-size: 12px;
+  color: var(--app-error);
+}
+
+.create-project-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.create-project-modal__btn {
+  padding: 7px 16px;
+  border-radius: var(--radius-md);
+  font-size: 12.5px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background var(--transition-fast), opacity var(--transition-fast), color var(--transition-fast);
+  white-space: nowrap;
+}
+
+.create-project-modal__btn--primary {
+  background: var(--app-accent);
+  color: var(--app-bg-primary);
+  border: none;
+}
+
+.create-project-modal__btn--primary:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.create-project-modal__btn--primary:not(:disabled):hover {
+  opacity: 0.85;
+}
+
+.create-project-modal__btn--ghost {
+  background: none;
+  border: 1px solid var(--app-border);
+  color: var(--app-text-secondary);
+}
+
+.create-project-modal__btn--ghost:hover {
+  background: var(--app-hover-overlay);
+  color: var(--app-text-primary);
+}

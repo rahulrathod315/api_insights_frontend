@@ -4,6 +4,34 @@
   padding: 12px 28px;
 }
 
+.subbar__left {
+  display: flex;
+  align-items: center;
+}
+
+.subbar__page-heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.subbar__page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--app-text-primary);
+  line-height: 1.2;
+}
+
 .subbar__spacer {
   flex: 1;
+}
+
+.subbar__projects-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.subbar__project-count {
+  font-size: 13px;
+  color: var(--app-text-muted);
 }

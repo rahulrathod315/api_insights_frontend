@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { getProjects, createProject } from '../../../features/projects'
+import { getProjects } from '../../../features/projects'
+import CreateProjectModal from '../../../shared/components/CreateProjectModal/CreateProjectModal'
 import './ProjectSwitcher.css'
 
 function ChevronIcon() {
@@ -42,13 +43,9 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
   const [projects, setProjects] = useState([])
   const [search, setSearch] = useState('')
   const [loading, setLoading] = useState(true)
-  const [showAddForm, setShowAddForm] = useState(false)
-  const [newName, setNewName] = useState('')
-  const [creating, setCreating] = useState(false)
-  const [createError, setCreateError] = useState('')
+  const [showCreateModal, setShowCreateModal] = useState(false)
   const ref = useRef(null)
   const searchRef = useRef(null)
-  const addInputRef = useRef(null)
   const navigate = useNavigate()
 
   const selected = selectedProject
@@ -79,19 +76,14 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
       if (ref.current && !ref.current.contains(e.target)) {
         setOpen(false)
         setSearch('')
-        resetAddForm()
       }
     }
     if (open) {
       document.addEventListener('mousedown', handleClickOutside)
-      if (!showAddForm) searchRef.current?.focus()
+      searchRef.current?.focus()
       return () => document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [open, showAddForm])
-
-  useEffect(() => {
-    if (showAddForm) addInputRef.current?.focus()
-  }, [showAddForm])
+  }, [open])
 
   const filtered = useMemo(() => {
     if (!search) return projects
@@ -99,39 +91,23 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
     return projects.filter(p => p.name.toLowerCase().includes(q))
   }, [search, projects])
 
-  function resetAddForm() {
-    setShowAddForm(false)
-    setNewName('')
-    setCreateError('')
-  }
-
   function handleSelect(project) {
     setSelected(project)
     setOpen(false)
     setSearch('')
-    resetAddForm()
     navigate(`/projects/${project.id}`)
   }
 
-  async function handleCreate(e) {
-    e.preventDefault()
-    const trimmed = newName.trim()
-    if (!trimmed) return
-    setCreating(true)
-    setCreateError('')
-    try {
-      const created = await createProject({ name: trimmed })
-      setProjects(prev => [...prev, created])
-      resetAddForm()
-      handleSelect(created)
-    } catch (err) {
-      const msg = err?.response?.data?.errors?.name?.[0]
-        || err?.response?.data?.message
-        || 'Failed to create project'
-      setCreateError(msg)
-    } finally {
-      setCreating(false)
-    }
+  function handleAddClick() {
+    setOpen(false)
+    setSearch('')
+    setShowCreateModal(true)
+  }
+
+  function handleProjectCreated(created) {
+    setProjects(prev => [...prev, created])
+    setShowCreateModal(false)
+    handleSelect(created)
   }
 
   if (loading) {
@@ -172,7 +148,7 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
             />
           </div>
           <div className="project-switcher__list">
-            {filtered.length === 0 && !showAddForm && (
+            {filtered.length === 0 && (
               <div className="project-switcher__empty">No projects found</div>
             )}
             {filtered.map(p => (
@@ -187,47 +163,22 @@ export default function ProjectSwitcher({ selectedProject, onProjectChange }) {
             ))}
           </div>
           <div className="project-switcher__footer">
-            {showAddForm ? (
-              <form className="project-switcher__add-form" onSubmit={handleCreate}>
-                <input
-                  ref={addInputRef}
-                  className="project-switcher__add-input"
-                  type="text"
-                  placeholder="Project name"
-                  value={newName}
-                  onChange={e => { setNewName(e.target.value); setCreateError('') }}
-                  disabled={creating}
-                />
-                {createError && <p className="project-switcher__add-error">{createError}</p>}
-                <div className="project-switcher__add-actions">
-                  <button
-                    type="button"
-                    className="project-switcher__add-cancel"
-                    onClick={resetAddForm}
-                    disabled={creating}
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    className="project-switcher__add-submit"
-                    disabled={creating || !newName.trim()}
-                  >
-                    {creating ? 'Creating...' : 'Create'}
-                  </button>
-                </div>
-              </form>
-            ) : (
-              <button
-                className="project-switcher__add-btn"
-                onClick={() => setShowAddForm(true)}
-              >
-                <PlusIcon />
-                <span>Add Project</span>
-              </button>
-            )}
+            <button
+              className="project-switcher__add-btn"
+              onClick={handleAddClick}
+            >
+              <PlusIcon />
+              <span>Add Project</span>
+            </button>
           </div>
         </div>
+      )}
+
+      {showCreateModal && (
+        <CreateProjectModal
+          onCreated={handleProjectCreated}
+          onCancel={() => setShowCreateModal(false)}
+        />
       )}
     </div>
   )
