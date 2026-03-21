@@ -9,6 +9,7 @@ import ResetPasswordPage from '../pages/ResetPassword/ResetPasswordPage'
 import DashboardPage from '../pages/Dashboard/DashboardPage'
 import SettingsPage from '../pages/Settings/SettingsPage'
 import ProjectsPage from '../pages/Projects/ProjectsPage'
+import VerifyEmailPage from '../pages/VerifyEmail/VerifyEmailPage'
 
 const routes = [
   {
@@ -26,6 +27,10 @@ const routes = [
   {
     path: '/reset-password',
     element: <AuthRoute><ResetPasswordPage /></AuthRoute>,
+  },
+  {
+    path: '/verify-email',
+    element: <VerifyEmailPage />,
   },
   {
     path: '/',
